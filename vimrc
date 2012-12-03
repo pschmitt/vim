@@ -1,23 +1,38 @@
-"set runtimepath=~/.vim,$VIMRUNTIME,~/.vim/after
 " Basics
+"set runtimepath=$XDG_CONFIG_HOME/vim,$VIMRUNTIME
 syntax on " enable syntax highlighting
+filetype on
 set showmatch " show matching brackets (),{},[]
 set number
 set nocompatible
 " set background=black
 set encoding=utf-8
-filetype on
+set termencoding=utf-8
+set t_Co=256
 
-set backupdir=~/.vim/backup
-set directory=~/.vim/swap
-set undodir=~/.vim/undodir
+let VIM_DATA_HOME=expand("$HOME/.local/share/vim")
+"let VIMINFOFILE="n".VIM_DATA_HOME."/viminfo"
+
+let &viminfo.=",n".VIM_DATA_HOME."/viminfo"
+let &directory=VIM_DATA_HOME."/backup"
+let &backupdir=VIM_DATA_HOME."/swap"
+"set backupext=.bak
+let &undodir=VIM_DATA_HOME."/undodir"
 set undofile
 set undolevels=1000 "maximum number of changes that can be undone
 set undoreload=10000 "maximum number lines to save for undo on a buffer reload
 
-set t_Co=256
+if !isdirectory(&directory)
+    call mkdir(&directory, "p")
+endif
+if !isdirectory(&backupdir)
+    call mkdir(&backupdir, "p")
+endif
+if !isdirectory(&undodir)
+    call mkdir(&undodir, "p")
+endif
+
 set mouse=a
-set termencoding=utf-8
 
 set backspace=indent,eol,start
 
@@ -150,7 +165,7 @@ autocmd BufRead ~/.mutt/temp/mutt*   :source ~/.vim/mail.vimrc
 
 " theme
 "colors Mustang_Vim_Colorscheme_by_hcalves
-color Vitamins_Vim_Colorscheme_by_hcalves
+colors vitamins
 
 " restore cursor position
 if has("autocmd")
