@@ -70,7 +70,20 @@ function! ToggleRelativeNumber()
 endfunction
 
 " Remove trailing whitespaces
-map <F7>  :%s/ \+$//<CR>
+" Short version: map <F7> :%s/\s\+$//e<CR>
+" http://vimcasts.org/episodes/tidying-whitespace/
+nnoremap <silent> <F7> :call <SID>StripTrailingWhitespaces()<CR>
+function! <SID>StripTrailingWhitespaces()
+    " Preparation: save last search, and cursor position.
+    let _s=@/
+    let l = line(".")
+    let c = col(".")
+    " Do the business:
+    %s/\s\+$//e
+    " Clean up: restore previous search history, and cursor position
+    let @/=_s
+    call cursor(l, c)
+endfunction
 
 " Spellcheck
 map <F8> :w!<CR>:!aspell -c %<CR>:e! %<CR>
