@@ -1,27 +1,20 @@
-" Basics
-"set runtimepath=$XDG_CONFIG_HOME/vim,$VIMRUNTIME
-syntax on " enable syntax highlighting
-filetype on
-set showmatch " show matching brackets (),{},[]
-set number
-set nocompatible
-" set background=black
-set encoding=utf-8
-set termencoding=utf-8
-set t_Co=256
-
+" Directories
+" VIM_CONFIG_HOME is where vim's config is located
+" NOTE: In order top make that work $VIMINT has to set accordingly
+" export VIMINIT='let $MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc" | source $MYVIMRC'
+" Source: http://tlvince.com/vim-respect-xdg
+" VIM_DATA_HOME is where vim's non config data is stored
+" NOTE: We could use $XDG_DATA_HOME but it's not really portable
 let VIM_DATA_HOME=expand("$HOME/.local/share/vim")
-"let VIMINFOFILE="n".VIM_DATA_HOME."/viminfo"
-
+let VIM_CONFIG_HOME=expand("$HOME/.config/vim")
+let &runtimepath=VIM_CONFIG_HOME.",".VIM_CONFIG_HOME."/after,$VIM,$VIMRUNTIME"
 let &viminfo.=",n".VIM_DATA_HOME."/viminfo"
 let &directory=VIM_DATA_HOME."/backup"
 let &backupdir=VIM_DATA_HOME."/swap"
 "set backupext=.bak
 let &undodir=VIM_DATA_HOME."/undodir"
-set undofile
-set undolevels=1000 "maximum number of changes that can be undone
-set undoreload=10000 "maximum number lines to save for undo on a buffer reload
 
+" Create temp data dirs if they do not exist yet
 if !isdirectory(&directory)
     call mkdir(&directory, "p")
 endif
@@ -32,8 +25,21 @@ if !isdirectory(&undodir)
     call mkdir(&undodir, "p")
 endif
 
-set mouse=a
 
+syntax on " enable syntax highlighting
+filetype on
+set showmatch " show matching brackets (),{},[]
+set number
+set nocompatible
+" set background=black
+set encoding=utf-8
+set termencoding=utf-8
+set t_Co=256
+set undofile
+set undolevels=1000 "maximum number of changes that can be undone
+set undoreload=10000 "maximum number lines to save for undo on a buffer reload
+" Enable mouse
+set mouse=a
 set backspace=indent,eol,start
 
 " Indenting, Folding..
@@ -41,7 +47,7 @@ set tabstop=4 " numbers of spaces of tab character
 set shiftwidth=4 " numbers of spaces to (auto)indent
 set expandtab " insert spaces instead of tab chars
 set autoindent   " always set autoindenting on
-set cindent   " cindent
+set cindent
 set foldenable
 set foldmethod=marker
 set hlsearch " highlight all search results
@@ -51,6 +57,10 @@ set cmdheight=1 " command line height
 " set ruler " ruler display in status line
 " set showmode " show mode at bottom of screen
 " set previewheight=5
+
+" load pathogen
+runtime bundle/vim-pathogen/autoload/pathogen.vim
+call pathogen#infect()
 
 " Set taglist plugin options
 let Tlist_Use_Right_Window = 1
@@ -100,9 +110,20 @@ function! <SID>StripTrailingWhitespaces()
     call cursor(l, c)
 endfunction
 
-" Spellcheck
-map <F8> :w!<CR>:!aspell -c %<CR>:e! %<CR>
-map <F9> :w!<CR>:!aspell -l fr_FR -c %<CR>:e! %<CR>
+" Spell Check
+nmap <silent> <F8> :call ToggleSpell()<CR>
+let b:myLang=0
+let g:myLangList=["nospell","de_20", "fr", "en_us"]
+function! ToggleSpell()
+  let b:myLang=b:myLang+1
+  if b:myLang>=len(g:myLangList) | let b:myLang=0 | endif
+  if b:myLang==0
+    setlocal nospell
+  else
+    execute "setlocal spell spelllang=".get(g:myLangList, b:myLang)
+  endif
+  echo "spell checking language:" g:myLangList[b:myLang]
+endfunction
 
 " common save shortcuts
 " inoremap <C-s> <esc>:w<cr>a
@@ -123,6 +144,8 @@ au BufNewFile,BufRead *.sys set filetype=php
 au BufNewFile,BufRead grub.conf set filetype=grub
 au BufNewFile,BufRead *.dentry set filetype=dentry
 au BufNewFile,BufRead *.blog set filetype=blog
+au BufNewFile,BufRead *.sh set filetype=sh
+au BufNewFile,BufRead *.zsh set filetype=sh
 
 " C file specific options
 au FileType c,cpp set cindent
@@ -164,8 +187,8 @@ set novb
 autocmd BufRead ~/.mutt/temp/mutt*   :source ~/.vim/mail.vimrc
 
 " theme
-"colors Mustang_Vim_Colorscheme_by_hcalves
-colors vitamins
+colors Mustang
+"colors vitamins
 
 " restore cursor position
 if has("autocmd")
