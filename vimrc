@@ -191,7 +191,8 @@ autocmd BufRead ~/.mutt/temp/mutt*   :source ~/.vim/mail.vimrc
 " theme
 "§colors Mustang
 "colors vitamins
-colors miro8
+" colors miro8
+colors transparent 
 
 " restore cursor position
 if has("autocmd")
