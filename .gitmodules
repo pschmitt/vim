@@ -7,9 +7,6 @@
 [submodule "bundle/taglist.vim"]
 	path = bundle/taglist.vim
 	url = https://github.com/vim-scripts/taglist.vim.git
-[submodule "bundle/The-NERD-Commenter"]
-	path = bundle/The-NERD-Commenter
-	url = https://github.com/vim-scripts/The-NERD-Commenter.git
 [submodule "bundle/SuperTab-continued."]
 	path = bundle/SuperTab-continued.
 	url = https://github.com/vim-scripts/SuperTab-continued..git
@@ -37,3 +34,15 @@
 [submodule "bundle/vim-powerline"]
 	path = bundle/vim-powerline
 	url = https://github.com/Lokaltog/vim-powerline.git
+[submodule "bundle/snipMate"]
+	path = bundle/snipMate
+	url = https://github.com/vim-scripts/snipMate.git
+[submodule "bundle/vim-surround"]
+	path = bundle/vim-surround
+	url = https://github.com/tpope/vim-surround.git
+[submodule "bundle/delimitMate"]
+	path = bundle/delimitMate
+	url = https://github.com/Raimondi/delimitMate.git
+[submodule "bundle/tcomment_vim"]
+	path = bundle/tcomment_vim
+	url = https://github.com/tomtom/tcomment_vim
