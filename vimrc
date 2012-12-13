@@ -112,7 +112,6 @@ function! <SID>StripTrailingWhitespaces()
 endfunction
 
 " Spell Check
-
 nmap <silent> <F8> :call ToggleSpell()<CR>
 let b:myLang=0
 let g:myLangList=["nospell","de_20", "fr", "en_us"]
@@ -126,6 +125,12 @@ function! ToggleSpell()
     endif
     echo "spell checking language:" g:myLangList[b:myLang]
 endfunction
+
+" Toggle paste mode
+map <F9> :set paste!<CR>
+" Map Ctrl-Backspace to delete to beginning of line
+imap <C-H> <Esc>d0<CR><Up>i
+map <C-H> <Esc>d0<CR><Up>
 
 " common save shortcuts
 " inoremap <C-s> <esc>:w<cr>a
@@ -161,8 +166,6 @@ au FileType html,xhtml,php,eruby imap ddd <div class=""><return><return></div>
 au FileType html,xhtml,php,eruby imap lll <li><return><return></li><up><tab><tab>
 " Session Settings
 set sessionoptions=blank,buffers,curdir,folds,help,resize,tabpages,winsize
-map <c-q> :mksession! ~/.vim/.session <cr>
-map <c-s> :source ~/.vim/.session <cr>
 
 " Set up the status line
 fun! <SID>SetStatusLine()
