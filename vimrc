@@ -54,9 +54,8 @@ set hlsearch " highlight all search results
 
 set laststatus=2 " occasions to show status line, 2=always.
 set cmdheight=1 " command line height
-" set ruler " ruler display in status line
-" set showmode " show mode at bottom of screen
-" set previewheight=5
+" make l/m, Left/Right jump to next/previous line when on begginig/end of line
+set whichwrap+=<,>,[,]
 
 " load pathogen
 runtime bundle/vim-pathogen/autoload/pathogen.vim
