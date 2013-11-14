@@ -70,6 +70,9 @@ let Tlist_Compact_Format = 1
 let Tlist_File_Fold_Auto_Close = 0
 let Tlist_Inc_Winwidth = 1
 
+" Disable vim-markdown folding
+let g:vim_markdown_folding_disabled=1
+
 " key bindings
 " change leader, defaults to \
 let mapleader = ","
