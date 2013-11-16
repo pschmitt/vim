@@ -5,14 +5,25 @@
 " Source: http://tlvince.com/vim-respect-xdg
 " VIM_DATA_HOME is where vim's non config data is stored
 " NOTE: We could use $XDG_DATA_HOME but it's not really portable
-let VIM_DATA_HOME=expand("$HOME/.local/share/vim")
-let VIM_CONFIG_HOME=expand("$HOME/.config/vim")
-let &runtimepath=VIM_CONFIG_HOME.",".VIM_CONFIG_HOME."/after,$VIM,$VIMRUNTIME"
-let &viminfo.=",n".VIM_DATA_HOME."/viminfo"
-let &directory=VIM_DATA_HOME."/backup"
-let &backupdir=VIM_DATA_HOME."/swap"
-"set backupext=.bak
-let &undodir=VIM_DATA_HOME."/undodir"
+" XDG
+if empty($XDG_CONFIG_HOME)
+    let $XDG_CONFIG_HOME=expand("$HOME/.config")
+endif
+if empty($XDG_CACHE_HOME)
+    let $XDG_CACHE_HOME=expand("$HOME/.cache")
+endif
+
+" Environment
+set directory=$XDG_CACHE_HOME/vim
+"set directory+=~/tmp,/var/tmp,/tmp
+set backupdir=$XDG_CACHE_HOME/vim/backup
+"set backupdir+=~/tmp
+" Why the heck is the following directive ignored?!
+"set viminfo+=n$XDG_CACHE_HOME/vim/viminfo
+set runtimepath=$XDG_CONFIG_HOME/vim,$XDG_CONFIG_HOME/vim/after,$VIM,$VIMRUNTIME
+set undodir=$XDG_CACHE_HOME/vim
+set backupext=.bak
+let $MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc"
 
 " Create temp data dirs if they do not exist yet
 if !isdirectory(&directory)
@@ -24,7 +35,6 @@ endif
 if !isdirectory(&undodir)
     call mkdir(&undodir, "p")
 endif
-
 
 syntax on " enable syntax highlighting
 filetype plugin on
