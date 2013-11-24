@@ -1,11 +1,7 @@
 " Directories
-" VIM_CONFIG_HOME is where vim's config is located
 " NOTE: In order top make that work $VIMINT has to set accordingly
 " export VIMINIT='let $MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc" | source $MYVIMRC'
 " Source: http://tlvince.com/vim-respect-xdg
-" VIM_DATA_HOME is where vim's non config data is stored
-" NOTE: We could use $XDG_DATA_HOME but it's not really portable
-" XDG
 if empty($XDG_CONFIG_HOME)
     let $XDG_CONFIG_HOME=expand("$HOME/.config")
 endif
