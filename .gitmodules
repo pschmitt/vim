@@ -74,6 +74,6 @@
 	path = bundle/vim-twig
 	url = https://github.com/lunaru/vim-twig.git
 	ignore = dirty
-[submodule "bundle/vim-preview"]
-	path = bundle/vim-preview
-	url = https://github.com/greyblake/vim-preview.git
+[submodule "bundle/hammer.vim"]
+	path = bundle/hammer.vim
+	url = https://github.com/vim-scripts/hammer.vim
