@@ -103,10 +103,13 @@ function! ToggleRelativeNumber()
     endif
 endfunction
 
+" Hilight trailing whitespaces
+map <F7> /\(\S\+\)\@<=\s\+$<CR>
+
 " Remove trailing whitespaces
-" Short version: map <F7> :%s/\s\+$//e<CR>
+" Short version: map <F8> :%s/\s\+$//e<CR>
 " http://vimcasts.org/episodes/tidying-whitespace/
-nnoremap <silent> <F7> :call <SID>StripTrailingWhitespaces()<CR>
+nnoremap <silent> <F8> :call <SID>StripTrailingWhitespaces()<CR>
 function! <SID>StripTrailingWhitespaces()
     " Preparation: save last search, and cursor position.
     let _s=@/
@@ -119,8 +122,14 @@ function! <SID>StripTrailingWhitespaces()
     call cursor(l, c)
 endfunction
 
+" Toggle paste mode
+map <F9> :set paste!<CR>
+" Map Ctrl-Backspace to delete to beginning of line
+imap <C-H> <Esc>d0<CR><Up>i
+map <C-H> <Esc>d0<CR><Up>
+
 " Spell Check
-nmap <silent> <F8> :call ToggleSpell()<CR>
+nmap <silent> <F10> :call ToggleSpell()<CR>
 let b:myLang=0
 let g:myLangList=["nospell","de_20", "fr", "en_us"]
 function! ToggleSpell()
@@ -133,12 +142,6 @@ function! ToggleSpell()
     endif
     echo "spell checking language:" g:myLangList[b:myLang]
 endfunction
-
-" Toggle paste mode
-map <F9> :set paste!<CR>
-" Map Ctrl-Backspace to delete to beginning of line
-imap <C-H> <Esc>d0<CR><Up>i
-map <C-H> <Esc>d0<CR><Up>
 
 " common save shortcuts
 " inoremap <C-s> <esc>:w<cr>a
