@@ -203,9 +203,7 @@ set novb
 autocmd BufRead ~/.mutt/temp/mutt*   :source ~/.vim/mail.vimrc
 
 " theme
-"§colors Mustang
-"colors vitamins
-colors mirodark
+colors hybrid
 
 " restore cursor position
 if has("autocmd")
