@@ -52,8 +52,8 @@ set backspace=indent,eol,start
 set tabstop=4 " numbers of spaces of tab character
 set shiftwidth=4 " numbers of spaces to (auto)indent
 set expandtab " insert spaces instead of tab chars
-set autoindent   " always set autoindenting on
-set cindent
+"set autoindent   " always set autoindenting on
+"set cindent
 set foldenable
 set foldmethod=marker
 set hlsearch " highlight all search results
