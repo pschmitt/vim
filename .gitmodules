@@ -42,10 +42,6 @@
 	path = bundle/Solarized
 	url = https://github.com/vim-scripts/Solarized.git
 	ignore = dirty
-[submodule "bundle/vim-powerline"]
-	path = bundle/vim-powerline
-	url = https://github.com/Lokaltog/vim-powerline.git
-	ignore = dirty
 [submodule "bundle/snipMate"]
 	path = bundle/snipMate
 	url = https://github.com/vim-scripts/snipMate.git
@@ -77,9 +73,6 @@
 [submodule "bundle/hammer.vim"]
 	path = bundle/hammer.vim
 	url = https://github.com/vim-scripts/hammer.vim
-[submodule "bundle/vim-gitgutter"]
-	path = bundle/vim-gitgutter
-	url = https://github.com/airblade/vim-gitgutter.git
 [submodule "bundle/vim-eunuch"]
 	path = bundle/vim-eunuch
 	url = https://github.com/tpope/vim-eunuch.git
@@ -92,3 +85,15 @@
 [submodule "bundle/SearchComplete"]
 	path = bundle/SearchComplete
 	url = https://github.com/vim-scripts/SearchComplete
+[submodule "bundle/vim-airline"]
+	path = bundle/vim-airline
+	url = https://github.com/bling/vim-airline.git
+[submodule "bundle/vim-signify"]
+	path = bundle/vim-signify
+	url = https://github.com/mhinz/vim-signify
+[submodule "bundle/gundo"]
+	path = bundle/gundo
+	url = http://github.com/sjl/gundo.vim.git
+[submodule "bundle/syntastic"]
+	path = bundle/syntastic
+	url = https://github.com/scrooloose/syntastic.git
