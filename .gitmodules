@@ -42,10 +42,6 @@
 	path = bundle/Solarized
 	url = https://github.com/vim-scripts/Solarized.git
 	ignore = dirty
-[submodule "bundle/snipMate"]
-	path = bundle/snipMate
-	url = https://github.com/vim-scripts/snipMate.git
-	ignore = dirty
 [submodule "bundle/vim-surround"]
 	path = bundle/vim-surround
 	url = https://github.com/tpope/vim-surround.git
