@@ -1,5 +1,21 @@
+"------------------------------------------------------------------
+" File:     vimrc   Vim config file                                "
+" URL:      https://github.com/pschmitt/vim-config                 "
+" Version:  1.1                                                    "
+" Author:   Philipp Schmitt <philipp@schmitt.co>                   "
+"------------------------------------------------------------------
+"               _
+"        __   _(_)_ __ ___  _ __ ___
+"        \ \ / / | '_ ` _ \| '__/ __|
+"         \ V /| | | | | | | | | (__
+"          \_/ |_|_| |_| |_|_|  \___|
+"
+
 " Setup environment
 so $VIMRC.env
+
+" Source plugins
+so $XDG_CONFIG_HOME/vim/vimrc_plugins
 
 " Enable syntax highlighting
 syntax on
@@ -95,17 +111,17 @@ autocmd FileType c,cpp,java,php autocmd BufWritePre <buffer> :%s/\s\+$//e
 " Remove trailing whitespaces
 " Short version: map <F8> :%s/\s\+$//e<CR>
 " http://vimcasts.org/episodes/tidying-whitespace/
-nnoremap <silent> <F8> :call <SID>Preserve("%s/\\s\\+$//e")<CR>
+nnoremap <silent> <F8> :call Preserve("%s/\\s\\+$//e")<CR>
 function! Preserve(command)
-  " Preparation: save last search, and cursor position.
-  let _s=@/
-  let l = line(".")
-  let c = col(".")
-  " Do the business:
-  execute a:command
-  " Clean up: restore previous search history, and cursor position
-  let @/=_s
-  call cursor(l, c)
+    " Preparation: save last search, and cursor position.
+    let _s=@/
+    let l = line(".")
+    let c = col(".")
+    " Do the business:
+    execute a:command
+    " Clean up: restore previous search history, and cursor position
+    let @/=_s
+    call cursor(l, c)
 endfunction
 nmap _$ :call Preserve("%s/\\s\\+$//e")<CR>
 nmap _= :call Preserve("normal gg=G")<CR>
@@ -159,12 +175,10 @@ set novb
 "set t_vb=
 
 " Mutt integration
-" Autocmd BufRead ~/.mutt/temp/mutt*   :source ~/.vim/mail.vimrc
+" Autocmd BufRead ~/.mutt/temp/mutt* :source ~/.vim/mail.vimrc
 
 " Restore cursor position
 if has("autocmd")
     au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 endif
 
-" Source plugins
-so $XDG_CONFIG_HOME/vim/vimrc_plugins
