@@ -1,6 +1,6 @@
 " Directories
 " NOTE: In order top make that work $VIMINT has to set accordingly
-" export VIMINIT='let $MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc" | source $MYVIMRC'
+" Export VIMINIT='let $MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc" | source $MYVIMRC'
 " Source: http://tlvince.com/vim-respect-xdg
 if empty($XDG_CONFIG_HOME)
     let $XDG_CONFIG_HOME=expand("$HOME/.config")
@@ -14,7 +14,7 @@ set directory=$XDG_CACHE_HOME/vim
 "set directory+=~/tmp,/var/tmp,/tmp
 set backupdir=$XDG_CACHE_HOME/vim/backup
 "set backupdir+=~/tmp
-" Why the heck is the following directive ignored?!
+" FIXME: Why the heck is the following directive ignored?!
 "set viminfo+=n$XDG_CACHE_HOME/vim/viminfo
 set runtimepath=$XDG_CONFIG_HOME/vim,$XDG_CONFIG_HOME/vim/after,$VIM,$VIMRUNTIME
 set undodir=$XDG_CACHE_HOME/vim
@@ -32,61 +32,84 @@ if !isdirectory(&undodir)
     call mkdir(&undodir, "p")
 endif
 
-syntax on " enable syntax highlighting
+" Enable syntax highlighting
+syntax on
 filetype plugin on
-set showmatch " show matching brackets (),{},[]
-set number
+" Show matching brackets
+set showmatch
 set nocompatible
-" set background=black
-set encoding=utf-8
-set termencoding=utf-8
 set t_Co=256
 set undofile
-set undolevels=1000 "maximum number of changes that can be undone
-set undoreload=10000 "maximum number lines to save for undo on a buffer reload
+" Maximum number of changes that can be undone
+set undolevels=1000
+" Maximum number lines to save for undo on a buffer reload
+set undoreload=10000
 " Enable mouse
 set mouse=a
-set backspace=indent,eol,start
 
-" Indenting, Folding..
-set tabstop=4 " numbers of spaces of tab character
-set shiftwidth=4 " numbers of spaces to (auto)indent
-set expandtab " insert spaces instead of tab chars
-"set autoindent   " always set autoindenting on
+" Hilight current line/col
+set cursorcolumn
+set cursorline
+" Show line numbers
+set nu
+" Relative line numbers
+set rnu
+
+" Numbers of spaces of tab character
+set tabstop=4
+" Numbers of spaces to (auto)indent
+set shiftwidth=4
+" Insert spaces instead of tab chars
+set expandtab
+" Always set autoindenting on
+"set autoindent
 "set cindent
+" Folding
 set foldenable
 set foldmethod=marker
-set hlsearch " highlight all search results
-
-set laststatus=2 " occasions to show status line, 2=always.
-set cmdheight=1 " command line height
-" make l/m, Left/Right jump to next/previous line when on begginig/end of line
+" Highlight all search results
+set hlsearch
+" Hilight matching while typing
+set incsearch
+" Encoding
+set encoding=utf-8
+set termencoding=utf-8
+" Fileformats
+set ffs=unix
+" Occasions to show status line, 2=always
+set laststatus=2
+" Command line height
+set cmdheight=1
+" Fix backspace
+set backspace=indent,eol,start
+" FIXME: Make l/m, Left/Right jump to next/previous line when on begginig/end of line
 set whichwrap+=<,>,[,]
 
-" load pathogen
-runtime bundle/vim-pathogen/autoload/pathogen.vim
-call pathogen#infect()
-call pathogen#helptags()
-
-" Set taglist plugin options
-let Tlist_Use_Right_Window = 1
-let Tlist_Exit_OnlyWindow = 1
-let Tlist_Enable_Fold_Column = 0
-let Tlist_Compact_Format = 1
-let Tlist_File_Fold_Auto_Close = 0
-let Tlist_Inc_Winwidth = 1
-
-" Disable vim-markdown folding
-let g:vim_markdown_folding_disabled=1
-
-" key bindings
-" change leader, defaults to \
+" Key bindings
+" Change leader, defaults to \
 let mapleader = ","
 
-" Toggle taglist script
-map <F2> :TlistToggle<CR>
+" Common save shortcuts
+" Inoremap <C-s> <esc>:w<cr>a
+" Nnoremap <C-s> :w<cr>
 
-map <F3> :NERDTreeToggle<cr>
+" Disable arrow keys
+map <up> <nop>
+map <down> <nop>
+map <left> <nop>
+map <right> <nop>
+imap <up> <nop>
+imap <down> <nop>
+imap <left> <nop>
+imap <right> <nop>
+
+" Hilight trailing whitespaces
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd BufWinLeave * call clearmatches()
 
 " Toggle highlight current line and col
 map <F4> :set cursorcolumn! cursorline! <CR>
@@ -94,42 +117,39 @@ map <F4> :set cursorcolumn! cursorline! <CR>
 " Toggle relative line numbering
 map <F6> :call ToggleRelativeNumber()<CR>
 function! ToggleRelativeNumber()
-    if( &nu == 1 )
-        set nonu
-        set rnu
-    else
-        set nu
-        set nornu
-    endif
+    set rnu!
 endfunction
 
-" Hilight trailing whitespaces
-map <F7> /\(\S\+\)\@<=\s\+$<CR>
+" Automagically remove trailing whitespaces when saving file
+autocmd FileType c,cpp,java,php autocmd BufWritePre <buffer> :%s/\s\+$//e
 
 " Remove trailing whitespaces
 " Short version: map <F8> :%s/\s\+$//e<CR>
 " http://vimcasts.org/episodes/tidying-whitespace/
-nnoremap <silent> <F8> :call <SID>StripTrailingWhitespaces()<CR>
-function! <SID>StripTrailingWhitespaces()
-    " Preparation: save last search, and cursor position.
-    let _s=@/
-    let l = line(".")
-    let c = col(".")
-    " Do the business:
-    %s/\s\+$//e
-    " Clean up: restore previous search history, and cursor position
-    let @/=_s
-    call cursor(l, c)
+nnoremap <silent> <F8> :call <SID>Preserve("%s/\\s\\+$//e")<CR>
+function! Preserve(command)
+  " Preparation: save last search, and cursor position.
+  let _s=@/
+  let l = line(".")
+  let c = col(".")
+  " Do the business:
+  execute a:command
+  " Clean up: restore previous search history, and cursor position
+  let @/=_s
+  call cursor(l, c)
 endfunction
+nmap _$ :call Preserve("%s/\\s\\+$//e")<CR>
+nmap _= :call Preserve("normal gg=G")<CR>
 
 " Toggle paste mode
 map <F9> :set paste!<CR>
+
 " Map Ctrl-Backspace to delete to beginning of line
-imap <C-H> <Esc>d0<CR><Up>i
-map <C-H> <Esc>d0<CR><Up>
+imap <C-H> <Esc>c0
+map <C-H> <Esc>c0<Esc>
 
 " Spell Check
-nmap <silent> <F10> :call ToggleSpell()<CR>
+nmap <silent> <F11> :call ToggleSpell()<CR>
 let b:myLang=0
 let g:myLangList=["nospell","de_20", "fr", "en_us"]
 function! ToggleSpell()
@@ -143,84 +163,39 @@ function! ToggleSpell()
     echo "spell checking language:" g:myLangList[b:myLang]
 endfunction
 
-" common save shortcuts
-" inoremap <C-s> <esc>:w<cr>a
-" nnoremap <C-s> :w<cr>
-
 " Set bracket matching and comment formats
-set matchpairs+=<:>
-set comments-=s1:/*,mb:*,ex:*/
-set comments+=s:/*,mb:**,ex:*/
-set comments+=fb:*
-set comments+=b:\"
-set comments+=n::
+" Set matchpairs+=<:>
+" Set comments-=s1:/*,mb:*,ex:*/
+" Set comments+=s:/*,mb:**,ex:*/
+" Set comments+=fb:*
+" Set comments+=b:\"
+" Set comments+=n::
 
 " Fix filetype detection
-au BufNewFile,BufRead .torsmorc* set filetype=rc
-au BufNewFile,BufRead *.inc set filetype=php
-au BufNewFile,BufRead *.sys set filetype=php
-au BufNewFile,BufRead grub.conf set filetype=grub
-au BufNewFile,BufRead *.dentry set filetype=dentry
-au BufNewFile,BufRead *.blog set filetype=blog
 au BufNewFile,BufRead *.sh set filetype=sh
-au BufNewFile,BufRead *.zsh set filetype=sh
+au BufNewFile,BufRead *.zsh set filetype=zsh
 
 " C file specific options
 au FileType c,cpp set cindent
 au FileType c,cpp set formatoptions+=ro
 
-" HTML abbreviations
-au FileType html,xhtml,php,eruby imap bbb <br /><return>
-au FileType html,xhtml,php,eruby imap aaa <a href=""><return><return></a><up><up><right><right><right><right><right>
-au FileType html,xhtml,php,eruby imap iii <img src="" /><return><return></img><up><up><right><right><right><right>
-au FileType html,xhtml,php,eruby imap ddd <div class=""><return><return></div>
-au FileType html,xhtml,php,eruby imap lll <li><return><return></li><up><tab><tab>
 " Session Settings
 set sessionoptions=blank,buffers,curdir,folds,help,resize,tabpages,winsize
 
-" Set up the status line
-fun! <SID>SetStatusLine()
-    let l:s1="%-3.3n\\ %f\\ %h%m%r%w"
-    let l:s2="[%{strlen(&filetype)?&filetype:'?'},%{&encoding},%{&fileformat}]"
-    let l:s3="%=\\ 0x%-8B\\ \\ %-14.(%l,%c%V%)\\ %<%P"
-    execute "set statusline=" . l:s1 . l:s2 . l:s3
-endfun
-set laststatus=2
-call <SID>SetStatusLine()
-
 " Turn off blinking
 set novb
+
 " Turn off beep
 "set noerrorbells
 "set t_vb=
 
-" highlight redundant whitespaces and tabs.
-"autocmd ColorScheme * highlight RedundantSpaces ctermbg=red guibg=red
-"highlight RedundantSpaces ctermbg=red guibg=red
-"match RedundantSpaces /\s\+$\| \+\ze\t\|\t\%#\@<!/
-
 " Mutt integration
-autocmd BufRead ~/.mutt/temp/mutt*   :source ~/.vim/mail.vimrc
+" Autocmd BufRead ~/.mutt/temp/mutt*   :source ~/.vim/mail.vimrc
 
-" theme
-colors hybrid
-
-" airline
-let g:airline_theme             = 'powerlineish'
-let g:airline_enable_branch     = 1
-let g:airline_enable_syntastic  = 1
-
-" vim-powerline symbols
-let g:airline_left_sep          = ''
-let g:airline_left_alt_sep      = ''
-let g:airline_right_sep         = ''
-let g:airline_right_alt_sep     = ''
-let g:airline_branch_prefix     = ''
-let g:airline_readonly_symbol   = ''
-let g:airline_linecolumn_prefix = ''
-
-" restore cursor position
+" Restore cursor position
 if has("autocmd")
     au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 endif
 
+" Source plugins
+so vimrc_plugins

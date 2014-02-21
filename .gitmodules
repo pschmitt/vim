@@ -6,14 +6,6 @@
 	path = bundle/vim-fugitive
 	url = git://github.com/tpope/vim-fugitive.git
 	ignore = dirty
-[submodule "bundle/taglist.vim"]
-	path = bundle/taglist.vim
-	url = https://github.com/vim-scripts/taglist.vim.git
-	ignore = dirty
-[submodule "bundle/SuperTab-continued."]
-	path = bundle/SuperTab-continued.
-	url = https://github.com/vim-scripts/SuperTab-continued..git
-	ignore = dirty
 [submodule "bundle/The-NERD-tree"]
 	path = bundle/The-NERD-tree
 	url = https://github.com/vim-scripts/The-NERD-tree.git
@@ -111,3 +103,12 @@
 [submodule "bundle/tlib_vim"]
 	path = bundle/tlib_vim
 	url = https://github.com/tomtom/tlib_vim.git
+[submodule "bundle/YouCompleteMe"]
+	path = bundle/YouCompleteMe
+	url = https://github.com/Valloric/YouCompleteMe
+[submodule "bundle/tagbar"]
+	path = bundle/tagbar
+	url = https://github.com/majutsushi/tagbar
+[submodule "bundle/LustyExplorer"]
+	path = bundle/LustyExplorer
+	url = https://github.com/vim-scripts/LustyExplorer
