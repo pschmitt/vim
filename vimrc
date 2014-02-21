@@ -1,38 +1,5 @@
-" Directories
-" NOTE: In order top make that work $VIMINIT has to be set
-" export VIMINIT='let $VIMRC="$XDG_CONFIG_HOME/vim/vimrc" | source $VIMRC'
-" Source: http://tlvince.com/vim-respect-xdg
-if empty($VIMDOTDIR)
-    if empty($XDG_CONFIG_HOME)
-        let $XDG_CONFIG_HOME=expand("$HOME/.config")
-    endif
-    let $VIMDOTDIR=expand($XDG_CONFIG_HOME/vim)
-endif
-if empty($XDG_CACHE_HOME)
-    let $XDG_CACHE_HOME=expand("$HOME/.cache")
-endif
-
-" Environment
-set directory=$XDG_CACHE_HOME/vim
-"set directory+=~/tmp,/var/tmp,/tmp
-set backupdir=$XDG_CACHE_HOME/vim/backup
-"set backupdir+=~/tmp
-" FIXME: Why the heck is the following directive ignored?!
-"set viminfo+=n$XDG_CACHE_HOME/vim/viminfo
-set runtimepath=$VIMDOTDIR,$VIMDOTDIR/after,$VIM,$VIMRUNTIME
-set undodir=$XDG_CACHE_HOME/vim
-set backupext=.bak
-
-" Create temp data dirs if they do not exist yet
-if !isdirectory(&directory)
-    call mkdir(&directory, "p")
-endif
-if !isdirectory(&backupdir)
-    call mkdir(&backupdir, "p")
-endif
-if !isdirectory(&undodir)
-    call mkdir(&undodir, "p")
-endif
+" Setup environment
+so $VIMRC.env
 
 " Enable syntax highlighting
 syntax on
@@ -96,14 +63,14 @@ let mapleader = ","
 " Nnoremap <C-s> :w<cr>
 
 " Disable arrow keys
-map <up> <nop>
-map <down> <nop>
-map <left> <nop>
-map <right> <nop>
-imap <up> <nop>
-imap <down> <nop>
-imap <left> <nop>
-imap <right> <nop>
+"map <up> <nop>
+"map <down> <nop>
+"map <left> <nop>
+"map <right> <nop>
+"imap <up> <nop>
+"imap <down> <nop>
+"imap <left> <nop>
+"imap <right> <nop>
 
 " Hilight trailing whitespaces
 highlight ExtraWhitespace ctermbg=red guibg=red
