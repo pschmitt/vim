@@ -1,9 +1,12 @@
 " Directories
-" NOTE: In order top make that work $VIMINT has to set accordingly
-" Export VIMINIT='let $MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc" | source $MYVIMRC'
+" NOTE: In order top make that work $VIMINIT has to be set
+" export VIMINIT='let $VIMRC="$XDG_CONFIG_HOME/vim/vimrc" | source $VIMRC'
 " Source: http://tlvince.com/vim-respect-xdg
-if empty($XDG_CONFIG_HOME)
-    let $XDG_CONFIG_HOME=expand("$HOME/.config")
+if empty($VIMDOTDIR)
+    if empty($XDG_CONFIG_HOME)
+        let $XDG_CONFIG_HOME=expand("$HOME/.config")
+    endif
+    let $VIMDOTDIR=expand($XDG_CONFIG_HOME/vim)
 endif
 if empty($XDG_CACHE_HOME)
     let $XDG_CACHE_HOME=expand("$HOME/.cache")
@@ -16,10 +19,9 @@ set backupdir=$XDG_CACHE_HOME/vim/backup
 "set backupdir+=~/tmp
 " FIXME: Why the heck is the following directive ignored?!
 "set viminfo+=n$XDG_CACHE_HOME/vim/viminfo
-set runtimepath=$XDG_CONFIG_HOME/vim,$XDG_CONFIG_HOME/vim/after,$VIM,$VIMRUNTIME
+set runtimepath=$VIMDOTDIR,$VIMDOTDIR/after,$VIM,$VIMRUNTIME
 set undodir=$XDG_CACHE_HOME/vim
 set backupext=.bak
-let $MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc"
 
 " Create temp data dirs if they do not exist yet
 if !isdirectory(&directory)
@@ -198,4 +200,4 @@ if has("autocmd")
 endif
 
 " Source plugins
-so vimrc_plugins
+so $XDG_CONFIG_HOME/vim/vimrc_plugins
