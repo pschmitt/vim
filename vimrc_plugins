@@ -13,6 +13,10 @@ map <silent><F3> :NERDTreeToggle<cr>
 
 " Yankring
 map <silent><F11>  :YRShow<cr>
+" Use $XDG_CACHE_HOME for history
+let g:yankring_history_dir=expand("$HOME/.local/share")
+let g:yankring_history_file="yankring_history"
+
 
 " Color theme
 colors hybrid
