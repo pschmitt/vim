@@ -7,9 +7,12 @@ call pathogen#helptags()
 let g:tagbar_autofocus = 1
 
 " Toggle taglist script
-map <F2> :TagbarToggle<CR>
+map <silent><F2> :TagbarToggle<cr>
 
-map <F3> :NERDTreeToggle<cr>
+map <silent><F3> :NERDTreeToggle<cr>
+
+" Yankring
+map <silent><F11>  :YRShow<cr>
 
 " Color theme
 colors hybrid

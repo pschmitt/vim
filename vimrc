@@ -106,7 +106,7 @@ function! ToggleRelativeNumber()
 endfunction
 
 " Automagically remove trailing whitespaces when saving file
-autocmd FileType c,cpp,java,php autocmd BufWritePre <buffer> :%s/\s\+$//e
+" autocmd FileType c,cpp,java,php autocmd BufWritePre <buffer> :%s/\s\+$//e
 
 " Remove trailing whitespaces
 " Short version: map <F8> :%s/\s\+$//e<CR>
@@ -129,24 +129,27 @@ nmap _= :call Preserve("normal gg=G")<CR>
 " Toggle paste mode
 map <F9> :set paste!<CR>
 
+" Paste from clipboard
+map <Leader>p  <esc>"+p
+
 " Map Ctrl-Backspace to delete to beginning of line
 imap <C-H> <Esc>c0
 map <C-H> <Esc>c0<Esc>
 
 " Spell Check
-nmap <silent> <F11> :call ToggleSpell()<CR>
-let b:myLang=0
-let g:myLangList=["nospell","de_20", "fr", "en_us"]
-function! ToggleSpell()
-    let b:myLang=b:myLang+1
-    if b:myLang>=len(g:myLangList) | let b:myLang=0 | endif
-    if b:myLang==0
-        setlocal nospell
-    else
-        execute "setlocal spell spelllang=".get(g:myLangList, b:myLang)
-    endif
-    echo "spell checking language:" g:myLangList[b:myLang]
-endfunction
+" nmap <silent> <F11> :call ToggleSpell()<CR>
+" let b:myLang=0
+" let g:myLangList=["nospell","de_20", "fr", "en_us"]
+" function! ToggleSpell()
+"     let b:myLang=b:myLang+1
+"     if b:myLang>=len(g:myLangList) | let b:myLang=0 | endif
+"     if b:myLang==0
+"         setlocal nospell
+"     else
+"         execute "setlocal spell spelllang=".get(g:myLangList, b:myLang)
+"     endif
+"     echo "spell checking language:" g:myLangList[b:myLang]
+" endfunction
 
 " Set bracket matching and comment formats
 " Set matchpairs+=<:>
