@@ -1,1 +1,31 @@
+" Start vim with -X (no x11 connection, a bit faster startup)
+let vimpager_disable_x11 = 1
+
+" Don't load plugins
+set noloadplugins
+
+" Colors
 source $VIMDOTDIR/bundle/vim-hybrid/colors/hybrid.vim
+
+" Search
+set smartcase
+
+" This may not be a good idea
+set ft=man
+
+map <F2> :set ft=diff<cr>
+map <F3> :set ft=man<cr>
+
+" Show trailing chars, newlines and stuff
+set list listchars=tab:»·,trail:·,extends:…,precedes:<,eol:¬
+
+" Hilight trailing whitespaces
+" TODO Don't hilight when ft=man?
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd BufWinLeave * call clearmatches()
+
+" vim: ft=vim
