@@ -88,6 +88,9 @@ let mapleader = ","
 "imap <left> <nop>
 "imap <right> <nop>
 
+" Show trailing chars, newlines and stuff
+set list listchars=tab:>>,trail:-,extends:>,precedes:<,eol:¬
+
 " Hilight trailing whitespaces
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
