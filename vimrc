@@ -15,7 +15,7 @@
 so $VIMRC.env
 
 " Source plugins
-so $XDG_CONFIG_HOME/vim/vimrc_plugins
+so $VIMDOTDIR/vimrc_plugins
 
 " Enable syntax highlighting
 syntax on
