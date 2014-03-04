@@ -8,13 +8,16 @@ set noloadplugins
 source $VIMDOTDIR/bundle/vim-hybrid/colors/hybrid.vim
 
 " Search
+set ignorecase
 set smartcase
+set hlsearch
 
 " This may not be a good idea
 set ft=man
 
 map <F2> :set ft=diff<cr>
 map <F3> :set ft=man<cr>
+map <F4> :set nohls!<cr>
 
 " Show trailing chars, newlines and stuff
 set list listchars=tab:»·,trail:·,extends:…,precedes:<,eol:¬
