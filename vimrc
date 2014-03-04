@@ -59,6 +59,7 @@ set incsearch
 " Encoding
 set encoding=utf-8
 set termencoding=utf-8
+set fileencoding=utf-8
 " Fileformats
 set ffs=unix
 " Occasions to show status line, 2=always
@@ -89,7 +90,7 @@ let mapleader = ","
 "imap <right> <nop>
 
 " Show trailing chars, newlines and stuff
-set list listchars=tab:>>,trail:-,extends:>,precedes:<,eol:¬
+set list listchars=tab:»·,trail:·,extends:…,precedes:<,eol:¬
 
 " Hilight trailing whitespaces
 highlight ExtraWhitespace ctermbg=red guibg=red
