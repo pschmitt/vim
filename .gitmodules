@@ -118,3 +118,12 @@
 	path = bundle/YankRing.vim
 	url = https://github.com/vim-scripts/YankRing.vim
 	ignore = dirty
+[submodule "bundle/indentLine"]
+	path = bundle/indentLine
+	url = https://github.com/Yggdroot/indentLine
+[submodule "bundle/vimux"]
+	path = bundle/vimux
+	url = https://github.com/benmills/vimux
+[submodule "bundle/vim-multiple-cursors"]
+	path = bundle/vim-multiple-cursors
+	url = https://github.com/terryma/vim-multiple-cursors
