@@ -12,17 +12,17 @@ map <silent><F2> :TagbarToggle<cr>
 map <silent><F3> :NERDTreeToggle<cr>
 
 " Yankring
-map <silent><F11>  :YRShow<cr>
+map <silent><F11> :YRShow<cr>
 " Use $XDG_CACHE_HOME for history
 let g:yankring_history_dir=expand("$HOME/.local/share")
 let g:yankring_history_file="yankring_history"
 
 " Color theme
-let g:hybrid_use_Xresources = 1
+"let g:hybrid_use_Xresources = 1
 colors hybrid
 
 " Airline
-let g:airline_theme             = 'powerlineish'
+let g:airline_theme             = 'jellybeans'
 let g:airline_enable_branch     = 1
 let g:airline_enable_syntastic  = 1
 
