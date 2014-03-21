@@ -10,10 +10,6 @@
 	path = bundle/The-NERD-tree
 	url = https://github.com/vim-scripts/The-NERD-tree.git
 	ignore = dirty
-[submodule "bundle/Mustang2"]
-	path = bundle/Mustang2
-	url = https://github.com/vim-scripts/Mustang2.git
-	ignore = dirty
 [submodule "bundle/mirodark"]
 	path = bundle/mirodark
 	url = https://github.com/vim-scripts/mirodark.git
@@ -22,17 +18,9 @@
 	path = bundle/molokai
 	url = https://github.com/vim-scripts/molokai.git
 	ignore = dirty
-[submodule "bundle/badwolf"]
-	path = bundle/badwolf
-	url = https://github.com/vim-scripts/badwolf.git
-	ignore = dirty
 [submodule "bundle/jellybeans"]
 	path = bundle/jellybeans
 	url = https://github.com/vim-scripts/jellybeans.vim.git
-	ignore = dirty
-[submodule "bundle/Solarized"]
-	path = bundle/Solarized
-	url = https://github.com/vim-scripts/Solarized.git
 	ignore = dirty
 [submodule "bundle/vim-surround"]
 	path = bundle/vim-surround
@@ -45,10 +33,6 @@
 [submodule "bundle/tcomment_vim"]
 	path = bundle/tcomment_vim
 	url = https://github.com/tomtom/tcomment_vim
-	ignore = dirty
-[submodule "bundle/matchit.zip"]
-	path = bundle/matchit.zip
-	url = https://github.com/vim-scripts/matchit.zip.git
 	ignore = dirty
 [submodule "bundle/vim-markdown"]
 	path = bundle/vim-markdown
@@ -134,3 +118,12 @@
 	path = bundle/YankRing.vim
 	url = https://github.com/vim-scripts/YankRing.vim
 	ignore = dirty
+[submodule "bundle/indentLine"]
+	path = bundle/indentLine
+	url = https://github.com/Yggdroot/indentLine
+[submodule "bundle/vimux"]
+	path = bundle/vimux
+	url = https://github.com/benmills/vimux
+[submodule "bundle/vim-multiple-cursors"]
+	path = bundle/vim-multiple-cursors
+	url = https://github.com/terryma/vim-multiple-cursors
