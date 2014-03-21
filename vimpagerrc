@@ -7,6 +7,9 @@ set noloadplugins
 " Colors
 source $VIMDOTDIR/bundle/vim-hybrid/colors/hybrid.vim
 
+" Ignore modelines
+set nomodeline
+
 " Search
 set ignorecase
 set smartcase
