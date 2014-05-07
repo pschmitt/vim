@@ -19,6 +19,7 @@ so $VIMDOTDIR/vimrc_plugins
 
 " Enable syntax highlighting
 syntax on
+" Load plugin files for specific file types
 filetype plugin on
 " Show matching brackets
 set showmatch
@@ -39,15 +40,15 @@ set cursorline
 set nu
 " Relative line numbers
 set rnu
-
 " Numbers of spaces of tab character
 set tabstop=4
 " Numbers of spaces to (auto)indent
 set shiftwidth=4
 " Insert spaces instead of tab chars
 set expandtab
-" Always set autoindenting on
-"set autoindent
+" Copy the last indent when inserting a new line
+set autoindent
+" Autoindent C code
 "set cindent
 " Folding
 set foldenable
