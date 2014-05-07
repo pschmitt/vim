@@ -48,6 +48,8 @@ set shiftwidth=4
 set expandtab
 " Copy the last indent when inserting a new line
 set autoindent
+" Add/Delete &ts spaces when at beginning of line
+set smarttab
 " Autoindent C code
 "set cindent
 " Folding
