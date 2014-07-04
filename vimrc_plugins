@@ -14,12 +14,19 @@ map <silent><F3> :NERDTreeToggle<cr>
 " Yankring
 map <silent><F11> :YRShow<cr>
 " Use $XDG_CACHE_HOME for history
-let g:yankring_history_dir=expand("$HOME/.local/share")
+let g:yankring_history_dir=expand("$XDG_DATA_HOME")
 let g:yankring_history_file="yankring_history"
 
 " Color theme
-"let g:hybrid_use_Xresources = 1
-colors hybrid
+" let g:hybrid_use_Xresources = 1
+colors jellybeans
+
+" Jellybeans color theme
+" let g:jellybeans_overrides = {
+" \    'Todo': { 'guifg': '303030', 'guibg': 'f0f000',
+" \              'ctermfg': 'Black', 'ctermbg': 'Yellow',
+" \              'attr': 'bold' },
+" \}
 
 " Airline
 let g:airline_theme             = 'jellybeans'
@@ -70,7 +77,7 @@ let g:neocomplete#sources#dictionary#dictionaries = {
         \ }
 
 " Define keyword.
-if !exists('g:neocomplete#keyword_patterns')
+if ! exists('g:neocomplete#keyword_patterns')
     let g:neocomplete#keyword_patterns = {}
 endif
 let g:neocomplete#keyword_patterns['default'] = '\h\w*'
@@ -135,5 +142,29 @@ endif
 " https://github.com/c9s/perlomni.vim
 let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 
+" Disable NeoComplete when editing a note with notes.vim
+autocmd FileType notes NeoCompleteLock
+" Disable autocompletion for python as well
+autocmd FileType python NeoCompleteLock
+
 " vim-eunuch. Alias :SudoWrite to :Sw
 command Sw SudoWrite
+
+" Syntastic
+" Use passive mode for python files (python-mode compatibility)
+let g:syntastic_mode_map = { 'mode': 'active',
+                           \ 'passive_filetypes': ['python'] }
+" Jedi
+" let g:jedi#completions_enabled=0
+
+" vim-notes
+let g:notes_directories = ['~/docs/notes']
+
+" python-mode
+let g:pymode_lint_on_fly = 0
+let g:pymode_folding = 0
+" let g:pymode_indent = 1
+" let g:pymode_motion = 1
+" let g:pymode_virtualenv = 1
+" let g:pymode_run_bind = '<leader>r'
+let g:pymode_lint_checkers = ['pyflakes']

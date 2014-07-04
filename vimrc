@@ -65,6 +65,10 @@ set termencoding=utf-8
 set fileencoding=utf-8
 " Fileformats
 set ffs=unix
+" Show command completions above the command line
+set wildmenu
+" Show size of selected area (visual mode)
+set showcmd
 " Occasions to show status line, 2=always
 set laststatus=2
 " Command line height
@@ -77,6 +81,9 @@ set whichwrap+=<,>,[,]
 " Key bindings
 " Change leader, defaults to \
 let mapleader = ","
+
+set wrap
+set textwidth=80
 
 " Common save shortcuts
 " Inoremap <C-s> <esc>:w<cr>a
