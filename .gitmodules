@@ -132,3 +132,6 @@
 [submodule "bundle/vim-notes"]
 	path = bundle/vim-notes
 	url = https://github.com/xolox/vim-notes
+[submodule "bundle/python-mode"]
+	path = bundle/python-mode
+	url = https://github.com/klen/python-mode
