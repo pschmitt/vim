@@ -144,3 +144,6 @@
 [submodule "bundle/vim-expand-region"]
 	path = bundle/vim-expand-region
 	url = https://github.com/terryma/vim-expand-region
+[submodule "bundle/vim-processing"]
+	path = bundle/vim-processing
+	url = https://github.com/sophacles/vim-processing
