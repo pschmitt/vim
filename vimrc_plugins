@@ -158,7 +158,7 @@ let g:syntastic_mode_map = { 'mode': 'active',
 " let g:jedi#completions_enabled=0
 
 " vim-notes
-let g:notes_directories = ['~/docs/notes']
+let g:notes_directories = ['~/Documents/notes']
 
 " python-mode
 let g:pymode_lint_on_fly = 0
