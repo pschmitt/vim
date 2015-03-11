@@ -82,7 +82,7 @@ set whichwrap+=<,>,[,]
 " Change leader, defaults to \
 let mapleader = ","
 
-set wrap
+set nowrap
 set textwidth=80
 
 " Common save shortcuts
