@@ -147,3 +147,6 @@
 [submodule "bundle/Vim-Jinja2-Syntax"]
 	path = bundle/Vim-Jinja2-Syntax
 	url = https://github.com/Glench/Vim-Jinja2-Syntax
+[submodule "bundle/vim-abolish"]
+	path = bundle/vim-abolish
+	url = https://github.com/tpope/vim-abolish
