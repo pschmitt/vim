@@ -6,10 +6,6 @@
 	path = bundle/vim-fugitive
 	url = https://github.com/tpope/vim-fugitive.git
 	ignore = dirty
-[submodule "bundle/The-NERD-tree"]
-	path = bundle/The-NERD-tree
-	url = https://github.com/vim-scripts/The-NERD-tree.git
-	ignore = dirty
 [submodule "bundle/mirodark"]
 	path = bundle/mirodark
 	url = https://github.com/vim-scripts/mirodark.git
@@ -38,14 +34,6 @@
 	path = bundle/vim-markdown
 	url = https://github.com/plasticboy/vim-markdown.git
 	ignore = dirty
-[submodule "bundle/vim-twig"]
-	path = bundle/vim-twig
-	url = https://github.com/lunaru/vim-twig.git
-	ignore = dirty
-[submodule "bundle/hammer.vim"]
-	path = bundle/hammer.vim
-	url = https://github.com/vim-scripts/hammer.vim
-	ignore = dirty
 [submodule "bundle/vim-eunuch"]
 	path = bundle/vim-eunuch
 	url = https://github.com/tpope/vim-eunuch.git
@@ -70,10 +58,6 @@
 	path = bundle/vim-signify
 	url = https://github.com/mhinz/vim-signify
 	ignore = dirty
-[submodule "bundle/gundo"]
-	path = bundle/gundo
-	url = http://github.com/sjl/gundo.vim.git
-	ignore = dirty
 [submodule "bundle/syntastic"]
 	path = bundle/syntastic
 	url = https://github.com/scrooloose/syntastic.git
@@ -86,49 +70,20 @@
 	path = bundle/ctrlp.vim
 	url = https://github.com/ctrlpvim/ctrlp.vim
 	ignore = dirty
-[submodule "bundle/vim-snipmate"]
-	path = bundle/vim-snipmate
-	url = https://github.com/garbas/vim-snipmate.git
-	ignore = dirty
-[submodule "bundle/vim-snippets"]
-	path = bundle/vim-snippets
-	url = https://github.com/honza/vim-snippets.git
-	ignore = dirty
 [submodule "bundle/vim-addon-mw-utils"]
 	path = bundle/vim-addon-mw-utils
 	url = https://github.com/MarcWeber/vim-addon-mw-utils.git
-	ignore = dirty
-[submodule "bundle/tlib_vim"]
-	path = bundle/tlib_vim
-	url = https://github.com/tomtom/tlib_vim.git
 	ignore = dirty
 [submodule "bundle/tagbar"]
 	path = bundle/tagbar
 	url = https://github.com/majutsushi/tagbar
 	ignore = dirty
-[submodule "bundle/LustyExplorer"]
-	path = bundle/LustyExplorer
-	url = https://github.com/vim-scripts/LustyExplorer
-	ignore = dirty
-[submodule "bundle/YankRing.vim"]
-	path = bundle/YankRing.vim
-	url = https://github.com/vim-scripts/YankRing.vim
-	ignore = dirty
 [submodule "bundle/indentLine"]
 	path = bundle/indentLine
 	url = https://github.com/Yggdroot/indentLine
-[submodule "bundle/vimux"]
-	path = bundle/vimux
-	url = https://github.com/benmills/vimux
-[submodule "bundle/vim-multiple-cursors"]
-	path = bundle/vim-multiple-cursors
-	url = https://github.com/terryma/vim-multiple-cursors
 [submodule "bundle/neocomplete.vim"]
 	path = bundle/neocomplete.vim
 	url = https://github.com/Shougo/neocomplete.vim
-[submodule "bundle/vim-pentadactyl"]
-	path = bundle/vim-pentadactyl
-	url = https://github.com/dogrover/vim-pentadactyl.git
 [submodule "bundle/vim-notes"]
 	path = bundle/vim-notes
 	url = https://github.com/xolox/vim-notes
@@ -144,3 +99,12 @@
 [submodule "bundle/vim-expand-region"]
 	path = bundle/vim-expand-region
 	url = https://github.com/terryma/vim-expand-region
+[submodule "bundle/Vim-Jinja2-Syntax"]
+	path = bundle/Vim-Jinja2-Syntax
+	url = https://github.com/Glench/Vim-Jinja2-Syntax
+[submodule "bundle/vim-abolish"]
+	path = bundle/vim-abolish
+	url = https://github.com/tpope/vim-abolish
+[submodule "bundle/vim-airline-themes"]
+	path = bundle/vim-airline-themes
+	url = https://github.com/vim-airline/vim-airline-themes
