@@ -33,6 +33,10 @@ set undoreload=10000
 " Enable mouse
 set mouse=a
 
+" Share buffer (clipboard) accross VIM instances
+" https://stackoverflow.com/a/9167027
+set clipboard=unnamedplus
+
 " Hilight current line/col
 set cursorcolumn
 set cursorline
